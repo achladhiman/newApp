@@ -1,0 +1,25 @@
+<div class="dashboard-container">
+  <h1>Dashboard</h1>
+  
+  <div *ngIf="currentUser() as user; else noUser">
+    <p>Welcome, {{ user.username }}!</p>
+    <button (click)="logout()">Logout</button>
+  </div>
+  <ng-template #noUser>
+    <p>Please <a routerLink="/login">Login</a> or <a routerLink="/register">Register</a>.</p>
+  </ng-template>
+
+  <hr>
+
+  <div class="links">
+    <a routerLink="/products">Manage Products</a>
+  </div>
+
+  <hr>
+
+  <div class="weather-widget" *ngIf="weatherData()">
+    <h3>Current Weather (Noida) Latitude: 28.535517, Longitude: 77.391029</h3>
+    <p>Temperature: {{ weatherData().current_weather.temperature }}°C</p>
+    <p>Wind Speed: {{ weatherData().current_weather.windspeed }} km/h</p>
+  </div>
+</div>

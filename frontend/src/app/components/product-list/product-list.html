@@ -1,0 +1,28 @@
+<div class="product-list-container">
+  <h2>Products</h2>
+  <button routerLink="/products/add">Add Product</button>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Description</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngIf="loading()">
+        <td colspan="4">Loading...</td>
+      </tr>
+      <tr *ngFor="let product of products()">
+        <td>{{ product.name }}</td>
+        <td>{{ product.price }}</td>
+        <td>{{ product.description }}</td>
+        <td>
+          <button [routerLink]="['/products/edit', product.id]">Edit</button>
+          <button (click)="deleteProduct(product.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
